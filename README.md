@@ -154,36 +154,34 @@ The data represented as social mobility is obtained from Opportunity Insights, f
 - Unemployment
 
 #### The Census Bureau Tiger Database
-- Census tract boundaries
+- Census tract boundaries, 2010
 
 #### City of Philadelphia
-- Crime data
-- School locations
-- Park assets
-- Health centers
-- Streets
-- Walkable access to health food
-- District boundaries
-- School performance data
-- School locations
-- School catchments
-- Community school locations
-- Rebuild locations
+- Crime data, 2006-2018
+- Park assets, date not available
+- Health centers, 2018
+- Streets, 2018
+- Walkable access to health food, 2012-2014
+- District boundaries, 2016
+- School performance data, 2016-2017
+- School locations, 2018
+- School catchments, 2017-2018
+- Community school locations, 2018
+- Rebuild locations, 2018
 
 #### PASDA
-- Park boundaries
-- Libraries
+- Park boundaries, 2016
+- Libraries, 2012
 
-#### Public Health Management Corporation’s Community Health Database
-- Adverse Childhood Experiences (ACEs) data
+#### Public Health Management Corporation’s Community Health Database, 
+- Adverse Childhood Experiences (ACEs) data, 2016
 
-#### Community Behavioral Health, 2015
-- Behavioral health usage by zip code, based on unique eligible members
+#### Community Behavioral Health
+- Behavioral health usage by zip code, based on unique eligible members. 2015
 
 #### Opportunity Insights
-- [Social mobility data](https://opportunityinsights.org/data/)
+- [Social mobility data](https://opportunityinsights.org/data/). Data is provided for children born
+between 1978 and 1983. Data gathered by Azavea in 2018.
 
 #### National Center for Health Statistics. U.S. Small-Area Life Expectancy Estimates Project (USALEEP)
 - [Life Expectancy Estimates Files](https://www.cdc.gov/nchs/nvss/usaleep/usaleep.html), 2010-2015. National Center for Health Statistics. 2018.
-
-## Sample Report
