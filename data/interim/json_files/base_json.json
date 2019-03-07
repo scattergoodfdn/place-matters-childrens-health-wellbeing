@@ -1,0 +1,35 @@
+{
+    "district":
+    {
+        "risk_rank": "",
+        "asset_rank": "",
+        "overall_score": "",
+        "overall_rank": "",
+        "profile_p1": "",
+        "profile_p2": "",
+        "majority_race": "",
+        "pct_english_speaking": "",
+        "pct_children": "",
+        "pct_foreign_born": "",
+        "risk_summary": "",
+        "asset_summary": "",
+        "key_takeaway": "",
+        "snap_utilization_col1": "",
+        "school_qual_col1": "",
+        "park_rec_access_col1": "",
+        "walk_food_access_col1": "",
+        "behavioral_health_utilization_col1": "",
+        "snap_utilization_col2": "",
+        "school_qual_col2": "",
+        "park_rec_access_col2": "",
+        "walk_food_access_col2": "",
+        "behavioral_health_utilization_col2": ""
+    },
+    "city":
+    {
+        "top_summary_1": "",
+        "top_summary_2": "",
+        "second_summary": "",
+        "key_takeaway": ""
+    }
+}

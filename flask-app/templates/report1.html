@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <div class="report">
+    <div class="report-header">
+      <div class="header-left">
+          <h1 class="header-title">Children's health and well-being</h1>
+          <div class="header-location">Council District 
+            <span> {{ name }} </span>
+            <strong>Ranks 
+              <span>{{ district_data['overall_rank']}}</span>
+            </strong>
+          </div>
+          <p>{{ district_data['profile_p1']}}</p>
+      </div>
+      <div class="header-right">
+        <img class="header-image"
+              height="106" width="106"
+              src="{{ url_for('static', filename='plots/')}}{{ locator_impath }}" alt="Overall score">
+      </div>
+    </div>
+
+    <div class="report-row">
+      <div class="column">
+        <div class="section">
+          <div class="section-header">Overall score</div>
+          <div class="section-image">
+            <img src="{{ url_for('static', filename='plots/')}}{{ overall_impath }}" 
+                height="365" width="356" 
+                alt="Overall score">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+          <div class="section-header">Life expectancy</div>
+          <div class="section-image">
+            <img src="{{ url_for('static', filename='plots/')}}{{ life_exp_impath }}"
+            alt="Life Expectancy">
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-header">Social mobility</div>
+          <div class="section-image">
+            <img src="{{ url_for('static', filename='plots/')}}{{ social_mob_impath }}" 
+            alt="Social Mobility">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="report-row">
+      <div class="column">
+        <div class="section">
+          <div class="section-image-small">
+            <img src="{{ url_for('static', filename='plots/overall_score_map_legend.png') }}"
+            height="30" width="276" 
+            alt="Social Mobility">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+        </div>
+      </div>
+    </div>
+    <div class="report-row">
+      <div class="column profile-column">
+        <div class="section profile-section">
+          <div class="section-header" style="margin-bottom: 10px">District <span>{{name}}</span> Profile</div>
+          <div class="section-copy ">
+            <p>{{ district_data['profile_p2']}}</p>
+          </div>
+          <div class="profile-charts">
+            <div class="labeled-chart">
+              <div class="chart-label">Majority race</div>
+              <div class="chart-value ">{{ district_data['majority_race']}}</div>
+            </div>
+            <div class="labeled-chart">
+              <div class="chart-label">Percent foreign born</div>
+              <div class="chart-value ">{{ district_data['pct_foreign_born']}}</div>
+            </div>
+            <div class="labeled-chart">
+              <div class="chart-label">Percent English Only</div>
+              <div class="chart-value ">{{ district_data['pct_english_speaking']}}</div>
+            </div>
+            <div class="labeled-chart">
+              <div class="chart-label">Percent children</div>
+              <div class="chart-value ">{{ district_data['pct_children']}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+          <div class="section-image-small">
+            <img src="{{ url_for('static', filename='plots/')}}{{ profile_impath }}" 
+                height="323" width="323" 
+                alt="District Profile">
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-image">
+            <img src="{{ url_for('static', filename='plots/profile_map_legend.png') }}"
+            height="30" width="276" 
+            alt="Profile Map Legend">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="report-footer">
+      <div class="footer-left">
+        <p><strong>Winter 2019</strong></p>
+        <p>Data Sources: 2016 ACS 5-Year Estimates, City of Philadelphia, PHMC, Community Behavioral Health, Opportunity Insights, Nat'l Center for Health Statistics</p>
+      </div>
+      <div class="footer-right">
+        <img src="{{ url_for('static', filename='images/azavea-logo.png') }}" alt="Azavea">
+        <img src="{{ url_for('static', filename='images/scattergood-logo.png') }}" alt="Scattergood">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

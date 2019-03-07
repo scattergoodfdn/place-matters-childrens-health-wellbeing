@@ -1,0 +1,7 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+!SPR_SY1617_School_Metric_Scores_20180118.xlsx
+!behavioural_health_usage_by_zipcode.csv
+!rebuildsites-libgeo.json

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../static/css/main.css" />
+</head>
+<body>
+  <div class="report city-report">
+    <div class="report-header">
+      <div class="header-left">
+        <h1 class="header-title">Children's health and well-being</h1>
+        <div class="header-location">How Assets and Risks are Distributed Across the City</div>
+      </div>
+    </div>
+
+    <div class="report-row top-row">
+      <div class="column">
+        <div class="section">
+          <div class="section-copy">
+            <p>{{ city_data['top_summary_1']}}</p>
+            <p>{{ city_data['top_summary_2']}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+          <div class="section-image">
+              <img src="{{ url_for('static', filename='plots/city_summary_risk.svg') }}"
+            height="318" width="208"
+            alt="City Risk">
+            <img src="{{ url_for('static', filename='plots/city_summary_asset.svg') }}"
+            height="318" width="208"
+            alt="City Asset">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="report-row middle-row">
+      <div class="column">
+        <div class="section">
+          <div class="section-header">Life expectancy</div>
+          <div class="section-image-left">
+            <img src="{{ url_for('static', filename='plots/city_summary_life_exp_barchart.svg') }}"
+            height="100" width="276"
+            alt="Life Expectancy">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+          <div class="section-header">Social mobility</div>
+          <div class="section-image-left">
+            <img src="{{ url_for('static', filename='plots/city_summary_social_mobility_barchart.svg') }}"
+            height="100" width="276"
+            alt="Social Mobility">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">Asset mitigating risks - How each district stacks up</div>
+    <div class="report-row bottom-row">
+      <div class="column">
+        <div class="section">
+          <div class="section-image-small">
+            <img src="{{ url_for('static', filename='plots/city_summary_overall.svg') }}"
+            height="318" width="238"
+            alt="City Overall">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+          <div class="section-copy">
+            <p>{{ city_data['second_summary']}}</p>
+            <div class="section-header">Key takeaway</div>
+            <p>{{ city_data['key_takeaway']}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="report-footer">
+      <div class="footer-left">
+        <p><strong>Winter 2019</strong></p>
+        <p>Data Sources: 2016 ACS 5-Year Estimates, City of Philadelphia, PHMC, Community Behavioral Health, Opportunity Insights, Nat'l Center for Health Statistics</p>
+      </div>
+      <div class="footer-right">
+        <img src="../static/images/azavea-logo.png" alt="Azavea">
+        <img src="../static/images/scattergood-logo.png" alt="Scattergood">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

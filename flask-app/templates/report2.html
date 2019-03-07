@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <div class="report">
+    <div class="report-header">
+      <div class="header-left">
+        <h1 class="header-title">Children's health and well-being</h1>
+        <div class="header-location">Council District
+          <span>{{ name}}</span>
+          <strong>Ranks
+            <span>{{ district_data['overall_rank']}}</span>
+          </strong>
+        </div>
+      </div>
+    </div>
+    <div class="report-row">
+      <div class="column">
+        <div class="section">
+          <div class="section-header">Risk score</div>
+          <div class="section-copy">
+            <p>{{ district_data['risk_summary']}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+          <div class="section-header">Asset score</div>
+          <div class="section-copy">
+            <p>{{ district_data['asset_summary']}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="report-row">
+      <div class="column">
+        <div class="section">
+          <div class="section-image-small">
+            <img src="{{ url_for('static', filename='plots/')}}{{ riskbar_impath }}"
+              height="119" width="323"
+              alt="Risk Bar">
+            <img src="{{ url_for('static', filename='plots/')}}{{ risk_impath }}"
+              height="300" width="280"
+              alt="Risk Map">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="section">
+          <div class="section-image-small">
+            <img src="{{ url_for('static', filename='plots/')}}{{ assetbar_impath }}"
+            height="119" width="323"
+            alt="Asset Bar">
+            <img src="{{ url_for('static', filename='plots/')}}{{ asset_impath }}"
+            height="300" width="280"
+             alt="Asset Map">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="report-row">
+      <div class="section">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="pad-td">Variability in district asset scores</th>
+              <th class="text-left pad-td">District <span>{{name}}</span> lowest</th>
+              <th class="text-left pad-td">District <span>{{name}}</span> highest</th>
+              <th width="150" class="pad-td">Comparison</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="pad-td">SNAP Utilization</th>
+              <td class="text-left pad-td">{{ district_data['snap_utilization_col1']}}</td>
+              <td class="text-left pad-td">{{ district_data['snap_utilization_col2']}}</td>
+              <td style="vertical-align: middle">
+                <div class="section-image-left">
+                <img src="{{ url_for('static', filename='plots/')}}{{ benefits_tbc_impath }}" height="30" width="90" alt="Snap Table Barchart">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="pad-td">School Quality</th>
+              <td class="text-left pad-td">{{ district_data['school_qual_col1']}}</td>
+              <td class="text-left pad-td">{{ district_data['school_qual_col2']}}</td>
+              <td style="vertical-align: middle">
+                <div class="section-image-left">
+                <img src="{{ url_for('static', filename='plots/')}}{{ schools_tbc_impath }}" height="30" width="90" alt="Schools Table Barchart">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="pad-td">Park and Rec Access</th>
+              <td class="text-left pad-td">{{ district_data['park_rec_access_col1']}}</td>
+              <td class="text-left pad-td">{{ district_data['park_rec_access_col2']}}</td>
+              <td style="vertical-align: middle">
+                <div class="section-image-left">
+                  <img src="{{ url_for('static', filename='plots/')}}{{ parks_tbc_impath }}" height="30" width="90" alt="Parks Table Barchart">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="pad-td">Walkable Food Access</th>
+              <td class="text-left pad-td">{{ district_data['walk_food_access_col1']}}</td>
+              <td class="text-left pad-td">{{ district_data['walk_food_access_col2']}}</td>
+              <td style="vertical-align: middle">
+                <div class="section-image-left">
+                  <img src="{{ url_for('static', filename='plots/')}}{{ food_tbc_impath }}" height="30" width="90" alt="Food Table Barchart">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="pad-td">Behavioral Health Services Utilization</th>
+              <td class="text-left pad-td">{{ district_data['behavioral_health_utilization_col1']}}</td>
+              <td class="text-left pad-td">{{ district_data['behavioral_health_utilization_col2']}}</td>
+              <td style="vertical-align: middle">
+                <div class="section-image-left">
+                  <img src="{{ url_for('static', filename='plots/')}}{{ behavioural_tbc_impath }}" height="30" width="90" alt="Behavioral Table Barchart">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="report-row">
+      <div class="section">
+        <div class="section-header">Key takeaway</div>
+        <div class="section-copy">
+          <p>{{ district_data['key_takeaway']}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="report-footer">
+      <div class="footer-left">
+        <p><strong>Winter 2019</strong></p>
+        <p>Data Sources: 2016 ACS 5-Year Estimates, City of Philadelphia, PHMC, Community Behavioral Health, Opportunity Insights, Nat'l Center for Health Statistics</p>
+      </div>
+      <div class="footer-right">
+        <img src="{{ url_for('static', filename='images/azavea-logo.png') }}" alt="Azavea">
+        <img src="{{ url_for('static', filename='images/scattergood-logo.png') }}" alt="Scattergood">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
