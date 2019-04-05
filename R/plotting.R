@@ -82,25 +82,25 @@ names <- rbind(names_1, names_2, names_3, names_4, names_5, names_6, names_7, na
   
   # Layer 6) Locations of rebuild sites
 
-  rebuild_list <- c("8th & Diamond Playground", "Al Pearlman Sports Center", "Athletic Recreation Center", "Barrett Playground", "Belfield Recreation Center", "Capitolo Playground", "Carousel House", "Carroll Park", "Cecil B. Moore Recreation Center",
-                    "Cherashore Playground", "Chew Playground", "Cobbs Creek Environmental Education Center", "Cobbs Creek Recreation Center & Pool", "Cohocksink Recreation Center",
-                    "Disston Recreation Center", "East Poplar Playground", "Fishtown Recreation Center", "Fotteral Square", "Fox Chase Playground", "Francis Myers Recreation Center",
-                    "Frank Glavin Playground", "Gifford Playground", "Hancock Playground", "Happy Hollow Playground", "Harrowgate Park", "Hayes Playground",
-                    "Heitzman Playground", "James Finnegan Playground", "Jerome Brown Playground", "John C. Anderson Cultural Center", "Kingsessing Recreation Center", 
-                    "Lawncrest Recreation Center", "Library Branch - Blanche A. Nixon", "Library Branch - Haverford Avenue", "Library Branch - Nicetown-tioga", 
-                    "Library Branch - Paschalville", "Library Branch - West Oak Lane", "Malcolm X Memorial Park", "Mander Playground", "Marian Anderson Recreation Center", 
-                    "Martin Luther King Recreation Center", "McPherson Square", "McVeigh Recreation Center", "Miles Mack Playground", "Moss Playground", 
-                    "Murphy Recreation Center", "Nelson Playground", "Olney Recreation Center", "Panati Playground", "West Fairmount Park", "Pelbano Playground", 
-                    "Piccoli Playground", "Pleasant Hill Park", "Powers Park", "Rivera Recreation Center", "Russo Park Playground", "Shepard Recreation Center", 
-                    "Trenton & Auburn Playground", "Vare Recreation Center", "Vernon Park", "Vogt Recreation Center", "Waterloo Playground", "West Mill Creek", 
-                    "Ziehler Playground")
+  rebuild_list <- c("8th & Diamond Playground", "Al Pearlman Sports Center", "Athletic Recreation Center", "John L. Barrett Playground", "Belfield Recreation Center", "Dr. Nicola Capitolo Playground", 
+                    "Carousel House Recreation Center", "Carroll Park", "Cecil B. Moore Recreation Center", "A. Albert Cherashore Playground Building", "Charles H. Chew, Sr. Playground", 
+                    "Cobbs Creek Environmental Education Center", "Cobbs Creek Recreation Center & Pool", "Cohocksink Recreation Center", "Disston Recreation Center", "East Poplar Playground", 
+                    "Fishtown Recreation Center", "Stephen E. Fotteral Square", "Fox Chase Recreation Center", "Francis J. Myers Recreation Center", "Frank Glavin Playground", "Tomlinson & Gifford Playground", 
+                    "Hancock Playground", "Happy Hollow Playground", "Harrowgate Park", "Officer Robert Hayes Memorial Playground", "Robert T. Heitzman Recreation Center", "J. Francis Finnegan Playground",
+                    "Jerome Brown/Kenderton Playground", "John C. Anderson Cultural Center", "Kingsessing Recreation Center", "Lawncrest Recreation Center", "Library Branch - Blanche A. Nixon", 
+                    "Library Branch - Haverford Avenue", "Library Branch - Nicetown-tioga", "Library Branch - Paschalville", "Library Branch - West Oak Lane", "Malcolm X Memorial Park",
+                    "Joseph E. Mander Playground", "Marian Anderson Recreation Center", "Martin Luther King Recreation Center", "McPherson Square", "Sergeant John J. McVeigh Recreation Center",
+                    "Miles Mack Playground", "Victor J. Moss Memorial Field", "Lawrence E. Murphy Recreation Center", "Frank S. Nelson, Jr. Memorial Recreation Center", "Olney Recreation Center",
+                    "Vincent G. Panati Playground", "West Fairmount Park", "George C. Pelbano Playground", "Piccoli Playground", "Pleasant Hill Park", "Powers Park", "Rivera Recreation Center",
+                    "Russo Park Playground", "Haddington-Marshall L. Shepard, Sr. Rec Center", "Trenton & Auburn Playground", "Vare Recreation Center", "Vernon Park", "Vogt Recreation Center",
+                    "Waterloo Playground", "West Mill Creek Playground", "Ziehler Playground")
   
   park_assets <- sf::st_read('http://data.phl.opendata.arcgis.com/datasets/4df9250e3d624ea090718e56a9018694_0.geojson')
   park_assets <- st_transform(park_assets, 3857)
   libraries <- sf::st_read(LIBRARY_FILE)
   libraries <- st_transform(libraries, 3857)
-  rebuild_parks <- park_assets %>% filter(ASSET_NAME %in% rebuild_list)
-  rebuild_parks <- st_centroid(rebuild_parks)
+  rebuild_parks_assets <- park_assets %>% filter(ASSET_NAME %in% rebuild_list)
+  rebuild_parks_assets <- st_centroid(rebuild_parks_assets)
   rebuild_libraries <- libraries %>% filter(ASSET_NAME %in% rebuild_list)
   
   # Layer 7) Street data for visualization on profile map
@@ -323,7 +323,7 @@ district_maps = function(district){
    geom_sf(data = parks, fill = '#5DAF85', size = 0, alpha = 1) +
    geom_sf(data = health_pdph, color = '#218FDD', size = 2.5, alpha = 1, shape = 0, stroke = 1) +
    geom_sf(data = health_fqhc, fill = '#113DB4', color = '#113DB4', size = 2.5, alpha = 1, shape = 22, stroke = 1) +
-   geom_sf(data = rebuild_parks, color = '#00600C', size = 2.5, alpha = 1, shape = 8, stroke = 1) +
+   geom_sf(data = rebuild_parks_assets, color = '#00600C', size = 2.5, alpha = 1, shape = 8, stroke = 1) +
    geom_sf(data = rebuild_libraries, color = '#00600C', size = 2.5, alpha = 1, shape = 8, stroke = 1) +
    geom_sf(data = dist_schools, color = '#FC7450', size = 2.5, alpha = 1, shape = 2, stroke = 1) +
    geom_sf(data = comm_schools, fill = '#CA1700', color = '#CA1700', size = 2.5, alpha = 1, shape = 24, stroke = 1) +
@@ -745,7 +745,7 @@ countPointsPolys <- function(){
                       school_comm)) %>%
       mutate(rebuild =
                ifelse(DISTRICT == district,
-                      lengths(st_covers(the_district, rebuild_libraries)) + lengths(st_covers(the_district, rebuild_parks)),
+                      lengths(st_covers(the_district, rebuild_libraries)) + lengths(st_covers(the_district, rebuild_parks_assets)),
                       rebuild)) %>%
       mutate(parks_intersect =
                ifelse(DISTRICT == district,
