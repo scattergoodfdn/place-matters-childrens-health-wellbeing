@@ -5,22 +5,26 @@ import pandas as pd
 CENSUS_API_KEY = # add your census api key here
 
 CENSUS_VARIABLES = {
-    'population': 'S0101_C01_001E',
-    'education': 'S1501_C02_007E',
-    'poverty': 'S1702_C01_002E',
-    'unemployment': 'S2301_C04_001E',
-    'snap_households': 'S2201_C03_021E',
-    'not_snap_households': 'S2201_C05_021E',
-    'age_18_and_over': 'S0101_C01_025E',
-    'foreign_born': 'B05002_013E',
-    'african_american': 'B02001_003E',
-    'white': 'B02001_002E',
-    'asian': 'B02001_005E',
-    'speaks_only_english': 'C16001_002E'
-    # api variables https://api.census.gov/data/2016/acs/acs5/subject/variables.html
-    #   https://api.census.gov/data/2016/acs/acs5/variables.html
+        'population': 'S0101_C01_001E',
+        'education': 'S1501_C02_007E',
+        'poverty': 'S1702_C01_002E',
+        'unemployment': 'S2301_C04_001E',
+        'snap_households': 'S2201_C03_021E',
+        'not_snap_households': 'S2201_C05_021E',
+        'age_18_and_over': 'S0101_C01_025E',
+        'foreign_born': 'B05002_013E',
+        'hispanic_by_race': 'B03002_012E',
+        'hispanic_by_origin': 'B03001_003E',
+        'african_american': 'B02001_003E',
+        'african_american_non_hispanic_by_race': 'B03002_004E',
+        'white': 'B02001_002E',
+        'white_non_hispanic_by_race': 'B03002_003E',
+        'asian': 'B02001_005E',
+        'asian_non_hispanic_by_race': 'B03002_006E',
+        'speaks_only_english': 'C16001_002E'
+        # api variables https://api.census.gov/data/2016/acs/acs5/subject/variables.html
+        #   https://api.census.gov/data/2016/acs/acs5/variables.html
 }
-
 
 class CensusAPICall():
 

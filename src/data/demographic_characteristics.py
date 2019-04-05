@@ -44,23 +44,40 @@ class DemographicCharacteristics(Overlay):
         return df
 
     def __majority_race__(self):
+        hispanic_by_race = self.census_api.get_census_variable_df(
+            'hispanic_by_race', False)
+        hispanic_by_origin = self.census_api.get_census_variable_df(
+            'hispanic_by_origin', False)
         african_american = self.census_api.get_census_variable_df(
             'african_american', False)
+        african_american_non_hispanic_by_race = self.census_api.get_census_variable_df(
+            'african_american_non_hispanic_by_race', False)
         white = self.census_api.get_census_variable_df('white', False)
+        white_non_hispanic_by_race = self.census_api.get_census_variable_df(
+            'white_non_hispanic_by_race', False)
         asian = self.census_api.get_census_variable_df('asian', False)
+        asian_non_hispanic_by_race = self.census_api.get_census_variable_df(
+            'asian_non_hispanic_by_race', False)
         races = reduce(lambda x, y: pd.merge(x, y), [
-                       self.tracts, african_american, asian, white])
+                       self.tracts, hispanic_by_race, hispanic_by_origin,
+                                    african_american, african_american_non_hispanic_by_race,
+                                    white, white_non_hispanic_by_race,
+                                    asian, asian_non_hispanic_by_race])
         races = races.drop(['geometry', 'GEOFIPS'], axis=1) \
             .groupby('DISTRICT') \
             .sum() \
             .reset_index()
         l = []
         for i, r in races.iterrows():
-            race = 'white'
-            if r['asian'] > r[race]:
-                race = 'asian'
-            if r['african_american'] > r[race]:
-                race = 'african_american'
+            race = 'white_non_hispanic_by_race'
+            if r['asian_non_hispanic_by_race'] > r[race]:
+                race = 'asian_non_hispanic_by_race'
+            if r['african_american_non_hispanic_by_race'] > r[race]:
+                race = 'african_american_non_hispanic_by_race'
+            if r['hispanic_by_race'] > r[race]:
+                race = 'hispanic_by_race'
+            if r['hispanic_by_origin'] > r[race]:
+                race = 'hispanic_by_origin'
             l.append([r['DISTRICT'], race])
         df = pd.DataFrame(l, columns=['DISTRICT', 'majority_race'])
         df = pd.merge(df, races)
